@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int totalScore;
-
-  Result(this.totalScore);
+  final Function restartHandler;
+  Result(this.totalScore, this.restartHandler);
 
   String get resultPhrase {
     String resultText;
@@ -22,10 +23,21 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: <Widget>[
+          Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          OutlineButton(
+            child: Text("Restart Quiz!"),
+            textColor: Colors.black,
+            highlightColor: Colors.blue,
+            color: Colors.blue,
+            onPressed: restartHandler,
+          )
+        ],
       ),
     );
   }
